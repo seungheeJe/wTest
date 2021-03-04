@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cardView="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <variable
+                name="onClick"
+                type="android.view.View.OnClickListener" />
+        <variable
+                name="model"
+                type="com.seunghee.watchatest.viewmodel.fragment.TrendingGIFItemViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="222dp"
+            cardView:cardCornerRadius="20dp"
+            cardView:cardUseCompatPadding="true">
+        <FrameLayout android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:onClick="@{(v)-> onClick.onClick(v)}"
+                       bind:imgResGIF="@{model.gifURL}" >
+            </ImageView>
+            <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                       android:onClick="@{(v)-> onClick.onClick(v)}"
+                       android:visibility="@{model.isShowFavoriteIcon ? View.VISIBLE : View.GONE}"
+                       bind:imgRes="@{model.isFavorite ? model.setFavoriteIcon(context, model.isFavorite) : model.setFavoriteIcon(context, model.isFavorite)}"
+                       android:layout_gravity="end|bottom"
+                       android:layout_marginBottom="5dp"
+                       android:layout_marginEnd="5dp">
+            </ImageView>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
